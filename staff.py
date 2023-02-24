@@ -44,7 +44,7 @@ class Staff(commands.Cog):
     
 
     @commands.command(description="Game Moderation role required. Shows all game staff announcements.")
-    @commands.has_role("Game Moderation")
+    @commands.check(check_id)
     async def announcements(self, ctx):
         embed = disnake.Embed(title="**Game Staff Announcements**")
         embed = disnake.Embed(timestamp=ctx.message.created_at)
@@ -61,7 +61,7 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(description="Game Moderation role required. Shows everything needed for an STS.")
-    @commands.has_role("Game Moderation")
+    @commands.check(check_id)
     async def stsinfo(self, ctx):
         embed = disnake.Embed(title="**STS Information**")
         embed = disnake.Embed(timestamp=ctx.message.created_at)
