@@ -38,34 +38,34 @@ class Events(commands.Cog):
 
     
 
-    @commands.Cog.listener()
-    async def on_message(self, message: Message) -> None:
-        from disnake.ext.commands import CooldownMapping, BucketType
-        from disnake import Message
-        message_cooldown = CooldownMapping.from_cooldown(10.0, 600.0, BucketType.user)
-        if message.author.bot:
-            return
+    # @commands.Cog.listener()
+    # async def on_message(self, message: Message) -> None:
+    #     from disnake.ext.commands import CooldownMapping, BucketType
+    #     from disnake import Message
+    #     message_cooldown = CooldownMapping.from_cooldown(10.0, 600.0, BucketType.user)
+    #     if message.author.bot:
+    #         return
 
-        if any([message.content.startswith(check) for check in ["!ban", "!mute", "!kick", "!softban", ".gban", ".gkick"]]) and message.mentions:
-            bucket = message_cooldown.get_bucket(message)
-            retry_after = bucket.update_rate_limit()
+    #     if any([message.content.startswith(check) for check in ["!ban", "!mute", "!kick", "!softban", ".gban", ".gkick"]]) and message.mentions:
+    #         bucket = message_cooldown.get_bucket(message)
+    #         retry_after = bucket.update_rate_limit()
 
-            if retry_after:
-                if message.author.top_role.position < message.guild.self_role.position:
-                    dt = datetime.datetime.now().astimezone() + datetime.timedelta(days=1)
-                    await message.author.timeout(duration=datetime.timedelta(minutes=15),
-                                                reason="Spamming moderation commands.")
-                    await message.channel.send(
-                        f"<:redwarn:972186324020908112> Muted {message.author.mention} for `spamming moderation commands`" +
-                        f" until <t:{int(dt.timestamp())}:F> (<@&956999230730412115>)"
-                    )
-                else:
-                    print(
-                        f"<:redwarn:972186324020908112> {message.author}, is moderation commands but",
-                        "cannot be muted since the user either has a higher or equal role to me. (<@&956999230730412115>)"
-                    )
+    #         if retry_after:
+    #             if message.author.top_role.position < message.guild.self_role.position:
+    #                 dt = datetime.datetime.now().astimezone() + datetime.timedelta(days=1)
+    #                 await message.author.timeout(duration=datetime.timedelta(minutes=15),
+    #                                             reason="Spamming moderation commands.")
+    #                 await message.channel.send(
+    #                     f"<:redwarn:972186324020908112> Muted {message.author.mention} for `spamming moderation commands`" +
+    #                     f" until <t:{int(dt.timestamp())}:F> (<@&956999230730412115>)"
+    #                 )
+    #             else:
+    #                 print(
+    #                     f"<:redwarn:972186324020908112> {message.author}, is moderation commands but",
+    #                     "cannot be muted since the user either has a higher or equal role to me. (<@&956999230730412115>)"
+    #                 )
 
-        await commands.process_commands(message)
+    #     await commands.process_commands(message)
         
 
 
