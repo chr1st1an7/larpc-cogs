@@ -18,7 +18,7 @@ class Events(commands.Cog):
     async def on_ready(self):
         print(f'Events Cog is online.')
 
-    @client.event
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         if member.guild.name == 'Los Angeles Roleplay Community':
             channel = commands.get_channel(925700658257084456)
@@ -38,7 +38,7 @@ class Events(commands.Cog):
 
     
 
-    @client.event
+    @commands.Cog.listener()
     async def on_message(self, message: Message) -> None:
         message_cooldown = CooldownMapping.from_cooldown(10.0, 600.0, BucketType.user)
         if message.author.bot:
@@ -66,7 +66,7 @@ class Events(commands.Cog):
         await commands.process_commands(message)
         
 
-    @client.listen("on_message")
+    @commands.listen("on_message")
     async def reactor(self, message: disnake.Message):
         if message.channel.id == 937055485801156629:
             await message.add_reaction(":newslike:1047149507881734234")
