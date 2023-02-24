@@ -25,6 +25,12 @@ class Moderation(commands.Cog):
             return bool([rid for rid in [789978655044272148, 1007687842526412810] if rid in ids])
         return commands.check(predicate)
 
+    def check_id(ctx):
+        ids = [649280874550132746]
+        role = disnake.utils.get(ctx.guild.roles, name="Game Moderation")
+        if ctx.author.id in ids or role in ctx.author.roles:
+            return ctx.author.id in ids
+
     @commands.command()
     @has_owner()
     async def gkick(self, ctx: Context, user: User, *, reason: str = None) -> None:
@@ -134,7 +140,8 @@ class Moderation(commands.Cog):
         await logs.send(embed=embed2)
 
     @commands.command(description="Admin permissions required. Mutes a member.")
-    @commands.has_role("All mod perms")
+    #@commands.has_role("All mod perms")
+    @commands.check(check_id)
     async def mute(self, ctx, member: disnake.Member, *, reason =None):
         client = commands
         guildId = ctx.message.guild.id
@@ -161,7 +168,8 @@ class Moderation(commands.Cog):
         await member.send(embed=embed)
 
     @commands.command(description="Admin permissions required. Unmutes a muted member.")
-    @commands.has_role("All mod perms")
+    #@commands.has_role("All mod perms")
+    @commands.check(check_id)
     async def unmute(self, ctx, member: disnake.Member):
         client = commands
         guildId = ctx.message.guild.id
