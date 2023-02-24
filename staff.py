@@ -19,7 +19,7 @@ class Staff(commands.Cog):
         print(f'Staff Cog is online.')
 
 
-    def check_id(self, ctx):
+    def check_id(ctx):
         ids = [649280874550132746]
         role = disnake.utils.get(ctx.guild.roles, name="Game Moderation")
         if ctx.author.id in ids or role in ctx.author.roles:
