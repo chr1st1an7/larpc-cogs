@@ -18,8 +18,16 @@ class Staff(commands.Cog):
     async def on_ready(self):
         print(f'Staff Cog is online.')
 
+
+    def check_id(ctx):
+        ids = [649280874550132746]
+        role = disnake.utils.get(ctx.guild.roles, name="Game Moderation")
+        if ctx.author.id in ids or role in ctx.author.roles:
+            return ctx.author.id in ids
+
+
     @commands.command(description="Game Moderation role required. Requests assistance in-game (requests more staff members to join).")
-    @commands.has_role("Game Moderation")
+    @commands.check(check_id)
     @commands.cooldown(1, 1800, commands.BucketType.default)
     async def assistance(self, ctx):
         channel = commands.get_channel(876781598937346109)
