@@ -20,7 +20,7 @@ class Moderation(commands.Cog):
 
     # ------------------------ Commands
     def has_owner():
-        def predicate(self, ctx):
+        def predicate(ctx):
             ids = [role.id for role in ctx.author.roles]
             return bool([rid for rid in [789978655044272148, 1007687842526412810] if rid in ids])
         return commands.check(predicate)
