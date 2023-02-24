@@ -66,12 +66,6 @@ class Events(commands.Cog):
         await commands.process_commands(message)
         
 
-    @commands.listen("on_message")
-    async def reactor(self, message: disnake.Message):
-        if message.channel.id == 937055485801156629:
-            await message.add_reaction(":newslike:1047149507881734234")
-            await message.add_reaction(":newsretweet:1047149823092080671")
-
 
 
 def setup(client):
