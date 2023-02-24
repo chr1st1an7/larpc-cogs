@@ -33,13 +33,15 @@ class Events(commands.Cog):
             embed.set_footer(text="Thank you for choosing Los Angeles Roleplay Community!", icon_url="https://media.discordapp.net/attachments/880519966070276156/1003737327832678541/larpclogowatermarked.png")
             await member.send(embed=embed)
             
-    from disnake import Message
-    from disnake.ext.commands import CooldownMapping, BucketType
+    
+    
 
     
 
     @commands.Cog.listener()
     async def on_message(self, message: Message) -> None:
+        from disnake.ext.commands import CooldownMapping, BucketType
+        from disnake import Message
         message_cooldown = CooldownMapping.from_cooldown(10.0, 600.0, BucketType.user)
         if message.author.bot:
             return
