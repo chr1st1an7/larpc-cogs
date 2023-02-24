@@ -145,7 +145,7 @@ class Moderation(commands.Cog):
     async def mute(self, ctx, member: disnake.Member, *, reason =None):
         client = commands
         guildId = ctx.message.guild.id
-        guild = client.get_guild(guildId)
+        guild = self.client.get_guild(guildId)
         embed = disnake.Embed(
             color=disnake.Color.blue(), title="**Notification**",
             description=f"You have been **muted** in **``{guild.name}``** (ID: {guildId}) for {reason}")
