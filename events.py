@@ -11,7 +11,6 @@ import datetime
 
 
 class Events(commands.Cog):
-    client = commands
     def __init__(self, client):
         self.client = client
 
@@ -19,7 +18,7 @@ class Events(commands.Cog):
     async def on_ready(self):
         print(f'Events Cog is online.')
 
-    @commands.event
+    @client.event
     async def on_member_join(self, member):
         if member.guild.name == 'Los Angeles Roleplay Community':
             channel = commands.get_channel(925700658257084456)
@@ -67,7 +66,7 @@ class Events(commands.Cog):
         await commands.process_commands(message)
         
 
-    @commands.listen("on_message")
+    @client.listen("on_message")
     async def reactor(self, message: disnake.Message):
         if message.channel.id == 937055485801156629:
             await message.add_reaction(":newslike:1047149507881734234")
