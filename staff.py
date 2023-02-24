@@ -30,7 +30,7 @@ class Staff(commands.Cog):
     @commands.check(check_id)
     @commands.cooldown(1, 1800, commands.BucketType.default)
     async def assistance(self, ctx):
-        channel = commands.get_channel(876781598937346109)
+        channel = self.client.get_channel(876781598937346109)
         embed = disnake.Embed(title="Staff requires in-game Assistance!")
         embed = disnake.Embed(timestamp=ctx.message.created_at)
         button = disnake.ui.Button(label="Join Server to Assist", style=disnake.ButtonStyle.green, emoji="📲", url="https://policeroleplay.community/join/larpc")
