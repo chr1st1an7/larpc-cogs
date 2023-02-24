@@ -17,7 +17,7 @@ class UserCmds(commands.Cog):
     # ------------------------ Commands
 
     @commands.command()
-    async def ping(ctx):
+    async def ping(self, ctx):
         latency = round(self.client.latency * 1000)
 
         await ctx.send(f'Pong! Latency: {latency}ms')
