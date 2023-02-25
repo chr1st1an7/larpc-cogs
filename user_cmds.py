@@ -103,6 +103,12 @@ class UserCmds(commands.Cog):
     @commands.command()
     async def test(self, ctx):
         await ctx.send("Just a test command! :D")
+
+    @commands.command()
+    async def vote(self, ctx):
+        embed = disnake.Embed(title="Support our server by voting!",
+                              description="Hey there, make sure to vote for our server on Melonly.\n https://servers.melonly.xyz/los-angeles-roleplay-community")
+        await ctx.send(embed=embed)
     
 def setup(client):
     client.add_cog(UserCmds(client))
