@@ -107,7 +107,7 @@ class UserCmds(commands.Cog):
     @commands.command()
     async def vote(self, ctx):
         embed = disnake.Embed(title="Support our server by voting!",
-                              description="Hey there, make sure to leave a review and vote for our server on Melonly.\n https://servers.melonly.xyz/los-angeles-roleplay-community")
+                              description="Make sure to leave a review and vote for our server on Melonly.\n https://servers.melonly.xyz/los-angeles-roleplay-community")
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/880519966070276156/1003737327832678541/larpclogowatermarked.png")
         await ctx.send(embed=embed)
     
