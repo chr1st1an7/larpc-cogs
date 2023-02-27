@@ -37,12 +37,12 @@ class Staff(commands.Cog):
         embed.add_field(name="Please join up the server and log on-duty!",
                         value="Don't forget to act mature and professional at all time!",
                         inline=False)
-        await channel.send('<@&999955672827432980>', embed=embed, components=[button])
+        #await channel.send('<@&999955672827432980>', embed=embed, components=[button])
         #await channel.send(embed=embed, components=[button])
         await ctx.reply(f"Hey, {ctx.author.mention}! I successfully requested assistance in <#876781598937346109>!")
 
     @assistance.error
-    async def cooldown_error(message, error):
+    async def cooldown_error(self, message, error):
         if isinstance(error, commands.CommandOnCooldown):
             await message.send(f"The assistance command is on cooldown. Retry in **{int(error.retry_after // 60)} minutes**.")
         else:
