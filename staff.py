@@ -41,6 +41,12 @@ class Staff(commands.Cog):
         #await channel.send(embed=embed, components=[button])
         await ctx.reply(f"Hey, {ctx.author.mention}! I successfully requested assistance in <#876781598937346109>!")
 
+    @assistance.error
+    async def cooldown_error(message, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            await message.send(f"The assistance command is on cooldown. Retry in **{int(error.retry_after // 60)} minutes**.")
+        else:
+            raise error
     
 
     @commands.command(description="Game Moderation role required. Shows all game staff announcements.")
