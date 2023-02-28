@@ -22,10 +22,11 @@ class UserCmds(commands.Cog):
         print(channel)
         await channel.send(embed=random.choice(embeds))
 
-    send_message.start()
+    #send_message.start()
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'UserCmds Cog is online.')
+        self.send_message.start()
 
     
     # ------------------------ Commands
