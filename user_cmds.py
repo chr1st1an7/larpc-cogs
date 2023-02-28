@@ -4,6 +4,8 @@ from disnake.ext import commands
 from disnake.ext.commands import command, has_permissions, bot_has_permissions
 from disnake.ui import View, Button, button
 from disnake import ButtonStyle, Interaction
+from disnake.ext import tasks
+import random
 
 class UserCmds(commands.Cog):
     client = commands
@@ -110,6 +112,18 @@ class UserCmds(commands.Cog):
                               description="Make sure to leave a review and vote for our server on Melonly.\n https://servers.melonly.xyz/los-angeles-roleplay-community")
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/880519966070276156/1003737327832678541/larpclogowatermarked.png")
         await ctx.send(embed=embed)
+
+    
+
+    @tasks.loop(seconds=20)
+    async def send_message():
+        staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
+
+        embeds = [staff_embed]
+        channel_id = 925700658257084456
+        channel = commands.get_channel(channel_id)
+        
+        await channel.send(random.choice(embeds))
     
 def setup(client):
     client.add_cog(UserCmds(client))
