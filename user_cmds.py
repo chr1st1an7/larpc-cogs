@@ -21,6 +21,11 @@ class UserCmds(commands.Cog):
         channel = self.client.get_channel(channel_id)
         await channel.send(embed=random.choice(embeds))
 
+    @send_message.before_loop
+    async def before_send_message(self):
+        await self.client.wait_until_ready()
+        print("Sending messages...")
+
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'UserCmds Cog is online.')
