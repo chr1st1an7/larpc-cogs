@@ -11,7 +11,7 @@ class UserCmds(commands.Cog):
     client = commands
     def __init__(self, client):
         self.client = client
-        self.send_message.start()
+        #self.send_message.start()
     
 
     
