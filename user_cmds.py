@@ -11,7 +11,7 @@ class UserCmds(commands.Cog):
     client = commands
     def __init__(self, client):
         self.client = client
-
+        self.send_message.start()
     
 
     
@@ -19,15 +19,6 @@ class UserCmds(commands.Cog):
     async def on_ready(self):
         print(f'UserCmds Cog is online.')
         
-
-    
-    # ------------------------ Commands
-
-    @commands.command()
-    async def ping(self, ctx):
-        latency = round(self.client.latency * 1000)
-
-        await ctx.send(f'Pong! Latency: {latency}ms')
 
     @tasks.loop(seconds=20)
     async def send_message(self):
@@ -38,7 +29,16 @@ class UserCmds(commands.Cog):
         channel = self.client.get_channel(channel_id)
         print(channel)
         await channel.send(embed=random.choice(embeds))
-    send_message.start()
+   
+    # ------------------------ Commands
+
+    @commands.command()
+    async def ping(self, ctx):
+        latency = round(self.client.latency * 1000)
+
+        await ctx.send(f'Pong! Latency: {latency}ms')
+
+    
 
     @commands.command(description="No permissions needed.")
     async def ad(self, ctx):
