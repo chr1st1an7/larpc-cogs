@@ -13,7 +13,7 @@ class UserCmds(commands.Cog):
         self.client = client
 
     @tasks.loop(seconds=20)
-    async def send_message():
+    async def send_message(self):
         staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
 
         embeds = [staff_embed]
