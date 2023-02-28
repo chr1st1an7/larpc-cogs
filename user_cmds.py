@@ -19,6 +19,7 @@ class UserCmds(commands.Cog):
         embeds = [staff_embed]
         channel_id = 925700658257084456
         channel = self.client.get_channel(channel_id)
+        print(channel)
         await channel.send(embed=random.choice(embeds))
 
     @send_message.before_loop
