@@ -11,26 +11,12 @@ class UserCmds(commands.Cog):
     client = commands
     def __init__(self, client):
         self.client = client
-        #self.send_message.start()
-    
 
-    
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'UserCmds Cog is online.')
-        
 
-    # @tasks.loop(seconds=20)
-    # async def send_message(self):
-    #     staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
-
-    #     embeds = [staff_embed]
-    #     channel_id = 925700658257084456
-    #     channel = self.client.get_channel(channel_id)
-    #     print(channel)
-    #     print('yes')
-    #     await channel.send(embed=random.choice(embeds))
-   
+    
     # ------------------------ Commands
 
     @commands.command()
@@ -40,7 +26,6 @@ class UserCmds(commands.Cog):
         await ctx.send(f'Pong! Latency: {latency}ms')
 
     
-
     @commands.command(description="No permissions needed.")
     async def ad(self, ctx):
         embed = disnake.Embed(title="Our Server Advertisement", description="```**:palm_tree: Los Angeles Roleplay Community**\nWelcome to Los Angeles Roleplay Community, the largest Los Angeles roleplay-based community on the ERLC, Roblox.\n\n**:police_officer_tone5: We offer probably one of the best roleplay experiences!**\nWe own every perk, professionally organized Discord server, and loads of Departments & Jobs you can work as!\n\n**Join us Today!**\nhttps://discord.gg/larpc\n\nand guess what.. we've kept your family hostage.. and if you don't join.. you know what we will do :smirk:\nhttps://youtu.be/jCI84XmCUK8```\nYou can use our server advertisement for partnerhip purposes, or to help us advertise and grow our server (<#608799037872930837>)!")
@@ -130,7 +115,14 @@ class UserCmds(commands.Cog):
 
     
 
-    
+    @tasks.loop(seconds=20)
+    async def send_message(self, ctx):
+        staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
+
+        embeds = [staff_embed]
+        channel_id = 925700658257084456
+        channel = self.client.get_channel(channel_id)
+        await channel.send(embed=random.choice(embeds))
     
 def setup(client):
     client.add_cog(UserCmds(client))
