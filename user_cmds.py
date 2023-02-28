@@ -28,6 +28,7 @@ class UserCmds(commands.Cog):
         channel_id = 925700658257084456
         channel = self.client.get_channel(channel_id)
         print(channel)
+        print('yes')
         await channel.send(embed=random.choice(embeds))
    
     # ------------------------ Commands
