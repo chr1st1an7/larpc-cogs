@@ -42,9 +42,12 @@ class Staff(commands.Cog):
         await ctx.reply(f"Hey, {ctx.author.mention}! I successfully requested assistance in <#876781598937346109>!")
 
     @assistance.error
-    async def cooldown_error(self, message, error):
+    async def assistance_error(self, message, error):
         if isinstance(error, commands.CommandOnCooldown):
             await message.send(f"The assistance command is on cooldown. Retry in **{int(error.retry_after // 60)} minutes**.")
+
+        elif isinstance(error, commands.MissingPermissions):
+            await message.send(f"Fuck you! You do not have permission :angry:")
         else:
             raise error
     
