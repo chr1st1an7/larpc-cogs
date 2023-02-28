@@ -20,16 +20,16 @@ class UserCmds(commands.Cog):
         print(f'UserCmds Cog is online.')
         
 
-    @tasks.loop(seconds=20)
-    async def send_message(self):
-        staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
+    # @tasks.loop(seconds=20)
+    # async def send_message(self):
+    #     staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
 
-        embeds = [staff_embed]
-        channel_id = 925700658257084456
-        channel = self.client.get_channel(channel_id)
-        print(channel)
-        print('yes')
-        await channel.send(embed=random.choice(embeds))
+    #     embeds = [staff_embed]
+    #     channel_id = 925700658257084456
+    #     channel = self.client.get_channel(channel_id)
+    #     print(channel)
+    #     print('yes')
+    #     await channel.send(embed=random.choice(embeds))
    
     # ------------------------ Commands
 
