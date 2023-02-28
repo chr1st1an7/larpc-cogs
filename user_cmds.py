@@ -24,7 +24,7 @@ class UserCmds(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'UserCmds Cog is online.')
-        send_message.start()
+        self.send_message.start()
 
     
     # ------------------------ Commands
