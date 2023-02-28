@@ -46,7 +46,7 @@ class Staff(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             await message.send(f"The assistance command is on cooldown. Retry in **{int(error.retry_after // 60)} minutes**.")
 
-        elif isinstance(error, commands.MissingPermissions):
+        elif isinstance(error, commands.CheckFailure):
             await message.send(f"Fuck you! You do not have permission :angry:")
         else:
             raise error
