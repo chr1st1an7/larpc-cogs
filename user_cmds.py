@@ -12,7 +12,7 @@ class UserCmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @client.tasks.loop(seconds=20)
+    @tasks.loop(seconds=20)
     async def send_message(self):
         staff_embed = disnake.Embed(title="We are hiring Staff Team members!", description="You can apply for our Staff Team by visiting our <#926817251280191569>.")
 
@@ -22,15 +22,10 @@ class UserCmds(commands.Cog):
         print(channel)
         await channel.send(embed=random.choice(embeds))
 
-    @send_message.before_loop
-    async def before_send_message(self):
-        await self.client.wait_until_ready()
-        print("Sending messages...")
-
+    send_message.start()
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'UserCmds Cog is online.')
-        self.send_message.start()
 
     
     # ------------------------ Commands
