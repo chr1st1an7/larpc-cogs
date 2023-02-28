@@ -121,8 +121,8 @@ class UserCmds(commands.Cog):
 
         embeds = [staff_embed]
         channel_id = 925700658257084456
-        channel = commands.get_channel(channel_id)
-        await ctx.channel.send(embed=random.choice(embeds))
+        channel = self.client.get_channel(channel_id)
+        await channel.send(embed=random.choice(embeds))
     
 def setup(client):
     client.add_cog(UserCmds(client))

@@ -21,7 +21,7 @@ class Staff(commands.Cog):
 
     def check_id(ctx):
         ids = [649280874550132746]
-        role = disnake.utils.get(ctx.guild.roles, name="Game Moderation")
+        role = disnake.guild.get_role("Game Moderation")
         if ctx.author.id in ids or role in ctx.author.roles:
             return ctx.author.id in ids
 
