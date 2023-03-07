@@ -80,7 +80,7 @@ class Staff(commands.Cog):
 
     @commands.slash_command(description="DMs Member")
     @commands.has_role("Owner")
-    async def dm(self, inter: commands.Context, member: disnake.Member = None, *, content=None):
+    async def dm(self, inter, member: disnake.Member = None, *, content=None):
         await member.send(content)
         await inter.send(f"I successfully sent message with content ``{content}`` to {member} (ID: {member.id})")
 
