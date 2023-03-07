@@ -74,7 +74,7 @@ class Staff(commands.Cog):
     @commands.check(check_id)
     async def stsinfo(self, inter):
         embed = disnake.Embed(title="**STS Information**")
-        embed = disnake.Embed(timestamp=inter.message.created_at)
+        embed = disnake.Embed(timestamp=inter.created_at)
         embed.add_field(name="**STS Handbook**", value="https://docs.google.com/document/d/1Lup_S7350JgXd5adk0QgbfelWO4vVDK10ZIESu_9M2c/edit?usp=sharing", inline=False)
         embed.add_field(name="**STS Script**", value="https://discord.com/channels/789978424646828042/925702293402304532/1029424293945294979")
         await inter.response.send_message(embed=embed)
