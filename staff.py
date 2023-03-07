@@ -38,7 +38,7 @@ class Staff(commands.Cog):
                         value="Don't forget to act mature and professional at all time!",
                         inline=False)
         #await channel.send('<@&999955672827432980>', embed=embed, components=[button])
-        #await channel.send(embed=embed, components=[button])
+        await channel.send(embed=embed, components=[button])
         await inter.response.send_message(f"Hey, {inter.author.mention}! I successfully requested assistance in <#876781598937346109>!")
         
 
