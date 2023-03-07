@@ -40,6 +40,7 @@ class Staff(commands.Cog):
         #await channel.send('<@&999955672827432980>', embed=embed, components=[button])
         #await channel.send(embed=embed, components=[button])
         await inter.response.send_message(f"Hey, {inter.author.mention}! I successfully requested assistance in <#876781598937346109>!")
+        
 
     @assistance.error
     async def assistance_error(self, message, error):
@@ -67,7 +68,7 @@ class Staff(commands.Cog):
         embed.add_field(name="Game Announcements 2", value="""
         `:m Hello. The Taxi and Limo company is available for service. Contact them if you need a ride.`\n`:m Hello. The Taxi and Limo Service company is currently hiring workers at the moment. Contact Owner (name) for more information.`\n`:m Hello. The J Store is open. Stop by if your looking for some fancy jewels.`\n`:m Hello. The J Store is currently hiring workers at the moment. Contact Owner (name) for more information.`\n`:m Hello. The LA General Hospital is open. Stop by if your not feeling good and need some medicine`.\n`:m Hello. The LA General Hospital is hiring workers at the moment. Contact (Name) for more information`
         """)
-        await inter.send(embed=embed)
+        await inter.response.send_message(embed=embed)
 
     @commands.slash_command(description="Game Moderation role required. Shows everything needed for an STS.")
     @commands.check(check_id)
@@ -76,13 +77,13 @@ class Staff(commands.Cog):
         embed = disnake.Embed(timestamp=inter.message.created_at)
         embed.add_field(name="**STS Handbook**", value="https://docs.google.com/document/d/1Lup_S7350JgXd5adk0QgbfelWO4vVDK10ZIESu_9M2c/edit?usp=sharing", inline=False)
         embed.add_field(name="**STS Script**", value="https://discord.com/channels/789978424646828042/925702293402304532/1029424293945294979")
-        await inter.send(embed=embed)
+        await inter.response.send_message(embed=embed)
 
     @commands.slash_command(description="DMs Member")
     @commands.has_role("Owner")
     async def dm(self, inter, member: disnake.Member = None, *, content=None):
         await member.send(content)
-        await inter.send(f"I successfully sent message with content ``{content}`` to {member} (ID: {member.id})")
+        await inter.response.send_message(f"I successfully sent message with content ``{content}`` to {member} (ID: {member.id})")
 
 
 
