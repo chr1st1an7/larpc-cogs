@@ -57,7 +57,7 @@ class Staff(commands.Cog):
     @commands.check(check_id)
     async def announcements(self, inter):
         embed = disnake.Embed(title="**Game Staff Announcements**")
-        embed = disnake.Embed(timestamp=inter.message.created_at)
+        embed = disnake.Embed(timestamp=inter.created_at)
         embed.add_field(name="**Discord Announcements**",
                         value="`:m Make sure to join our communications, as it's a MUST! .gg/larpc`\n`:h We’re currently hiring and looking to expand our Game Staff Team! Apply today! .gg/larpc`\n`:h Ever wanted to be a member of a specific Department or Division? Apply today! .gg/larpc`",
                         inline=False)
