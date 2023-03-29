@@ -40,8 +40,8 @@ class Events(commands.Cog):
     async def on_message(self, message):
         channel_id = 972899104793444412
     
-        reaction_1 = ":thumbsup:"
-        reaction_2 = ":thumbsdown:"
+        reaction_1 = "👍"
+        reaction_2 = "👎"
         # Check if the message is sent in the desired channel
         if message.channel.id == channel_id or message.channel.id == 949785685232066610:
             # React to the message with the two reactions
