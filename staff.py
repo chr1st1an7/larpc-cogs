@@ -95,8 +95,8 @@ class Staff(commands.Cog):
         embed.add_field(name="Proof", value=proof, inline=False)
         
         # Add accept and deny buttons to the embed
-        accept_button = disnake.ui.Button(style=disnake.ButtonStyle.green, label="Accept", emoji="✅")
-        deny_button = disnake.ui.Button(style=disnake.ButtonStyle.red, label="Deny", emoji="❌")
+        accept_button = disnake.ui.Button(style=disnake.ButtonStyle.green, label="Accept", custom_id="accept")
+        deny_button = disnake.ui.Button(style=disnake.ButtonStyle.red, label="Deny", custom_id="deny")
         await ctx.send(embed=embed, components=[[accept_button, deny_button]])
         
         # Wait for a button click response
@@ -105,7 +105,7 @@ class Staff(commands.Cog):
         
         # Check which button was clicked and respond accordingly
         if button_ctx.custom_id == "accept":
-            accept_button = disnake.ui.Button(style=disnake.ButtonStyle.green, label=f"Completed by {ctx.author}", emoji="✅")
+            accept_button = disnake.ui.Button(style=disnake.ButtonStyle.green, label=f"Completed by {ctx.author}")
             await button_ctx.send("Ban request accepted.")
             await ctx.send(embed=embed, components=[[accept_button]])
         elif button_ctx.custom_id == "deny":
