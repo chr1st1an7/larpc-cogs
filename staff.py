@@ -86,7 +86,7 @@ class Staff(commands.Cog):
         await inter.response.send_message(f"I successfully sent message with content ``{content}`` to {member} (ID: {member.id})")
 
 
-    @command.slash_command()
+    @commands.slash_command()
     async def ban_request(ctx: disnake.SlashContext, user: str, reason: str, proof: str):
         # Create an embed to display the ban request details
         embed = disnake.Embed(title="Ban Request", color=0xff0000)
