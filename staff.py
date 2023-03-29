@@ -100,16 +100,19 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed, components=[[accept_button, deny_button]])
         
         # Wait for a button click response
-        button_ctx: disnake.ComponentContext = await self.client.wait_for("button_click", check=lambda c: c.author.id == ctx.author.id)
+        #button_ctx: disnake.ComponentContext = await self.client.wait_for("button_click", check=lambda c: c.author.id == ctx.author.id)
+        accept = await self.client.wait_for("button_click", check = lambda i: i.custom_id == "accept")
+        deny = await self.client.wait_for("button_click", check = lambda i: i.custom_id == "deny")
+
         
         
         # Check which button was clicked and respond accordingly
-        if button_ctx.custom_id == "accept":
+        if accept:
             accept_button = disnake.ui.Button(style=disnake.ButtonStyle.green, label=f"Completed by {ctx.author}")
-            await button_ctx.send("Ban request accepted.")
+            await accept.send(content = "Ban request accepted.")
             await ctx.send(embed=embed, components=[[accept_button]])
-        elif button_ctx.custom_id == "deny":
-            await button_ctx.send("Ban request denied.")
+        elif deny:
+            await deny.send(content = "Ban request denied.")
 
 
 
