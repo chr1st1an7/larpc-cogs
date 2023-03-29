@@ -100,7 +100,7 @@ class Staff(commands.Cog):
         await ctx.send(embed=embed, components=[[accept_button, deny_button]])
         
         # Wait for a button click response
-        button_ctx: disnake.ComponentContext = await commands.client.wait_for("button_click", check=lambda c: c.author_id == ctx.author_id)
+        button_ctx: disnake.ComponentContext = await commands.wait_for("button_click", check=lambda c: c.author_id == ctx.author_id)
         
         # Check which button was clicked and respond accordingly
         if button_ctx.custom_id == "accept":
