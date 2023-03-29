@@ -38,22 +38,26 @@ class Events(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, message):
-        channel_id = 972899104793444412
+        suggestions_channel_id = 972899104793444412
     
         reaction_1 = "👍"
         reaction_2 = "👎"
+        async def create_thread(message):
+            thread = await message.create_thread(name="Discussion")
+            await thread.send("Welcome to the discussion thread!")
+
         # Check if the message is sent in the desired channel
-        if message.channel.id == channel_id or message.channel.id == 949785685232066610:
+        if message.channel.id == suggestions_channel_id:
             # React to the message with the two reactions
             await message.add_reaction(reaction_1)
             await message.add_reaction(reaction_2)
             
             # Create a thread on the message
             await create_thread(message)
-            
-        async def create_thread(message):
-            thread = await message.create_thread(name="Discussion")
-            await thread.send("Welcome to the discussion thread!")
+
+        if message.channel.id == 949785685232066610:
+            await create_thread(message)
+        
     
     
 
