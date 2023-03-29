@@ -86,6 +86,30 @@ class Staff(commands.Cog):
         await inter.response.send_message(f"I successfully sent message with content ``{content}`` to {member} (ID: {member.id})")
 
 
+    @command.slash_command()
+    async def ban_request(ctx: disnake.SlashContext, user: str, reason: str, proof: str):
+        # Create an embed to display the ban request details
+        embed = disnake.Embed(title="Ban Request", color=0xff0000)
+        embed.add_field(name="User", value=user, inline=False)
+        embed.add_field(name="Reason", value=reason, inline=False)
+        embed.add_field(name="Proof", value=proof, inline=False)
+        
+        # Add accept and deny buttons to the embed
+        accept_button = disnake.Button(style=disnake.ButtonStyle.green, label="Accept", emoji="✅")
+        deny_button = disnake.Button(style=disnake.ButtonStyle.red, label="Deny", emoji="❌")
+        await ctx.send(embed=embed, components=[[accept_button, deny_button]])
+        
+        # Wait for a button click response
+        button_ctx: disnake.ComponentContext = await commands.client.wait_for("button_click", check=lambda c: c.author_id == ctx.author_id)
+        
+        # Check which button was clicked and respond accordingly
+        if button_ctx.custom_id == "accept":
+            accept_button = disnake.Button(style=disnake.ButtonStyle.green, label=f"Completed by {ctx.author}", emoji="✅")
+            await button_ctx.send("Ban request accepted.")
+        elif button_ctx.custom_id == "deny":
+            await button_ctx.send("Ban request denied.")
+
+
 
 def setup(client):
     client.add_cog(Staff(client))
