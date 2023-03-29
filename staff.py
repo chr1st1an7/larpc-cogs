@@ -87,7 +87,7 @@ class Staff(commands.Cog):
 
 
     @commands.slash_command()
-    async def ban_request(ctx: disnake.SlashContext, user: str, reason: str, proof: str):
+    async def ban_request(self, ctx, user: str, reason: str, proof: str):
         # Create an embed to display the ban request details
         embed = disnake.Embed(title="Ban Request", color=0xff0000)
         embed.add_field(name="User", value=user, inline=False)
