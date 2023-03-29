@@ -18,6 +18,8 @@ class Events(commands.Cog):
     async def on_ready(self):
         print(f'Events Cog is online.')
 
+    
+
     @commands.Cog.listener()
     async def on_member_join(self, member):
         if member.guild.name == 'Los Angeles Roleplay Community':
@@ -32,7 +34,26 @@ class Events(commands.Cog):
                             inline=False)
             embed.set_footer(text="Thank you for choosing Los Angeles Roleplay Community!", icon_url="https://media.discordapp.net/attachments/880519966070276156/1003737327832678541/larpclogowatermarked.png")
             await member.send(embed=embed)
+
+        
+    @commands.event
+    async def on_message(message):
+        channel_id = 972899104793444412
+    
+        reaction_1 = ":thumbsup:"
+        reaction_2 = ":thumbsdown:"
+        # Check if the message is sent in the desired channel
+        if message.channel.id == channel_id or message.channel.id == 949785685232066610:
+            # React to the message with the two reactions
+            await message.add_reaction(reaction_1)
+            await message.add_reaction(reaction_2)
             
+            # Create a thread on the message
+            await create_thread(message)
+            
+        async def create_thread(message):
+            thread = await message.create_thread(name="Discussion")
+            await thread.send("Welcome to the discussion thread!")
     
     
 
