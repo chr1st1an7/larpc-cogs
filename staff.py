@@ -101,8 +101,8 @@ class Staff(commands.Cog):
         
         # Wait for a button click response
         #button_ctx: disnake.ComponentContext = await self.client.wait_for("button_click", check=lambda c: c.author.id == ctx.author.id)
-        accept = await self.client.wait_for("button_click", check = lambda i: self.client.i.custom_id == "accept")
-        deny = await self.client.wait_for("button_click", check = lambda i: self.client.i.custom_id == "deny")
+        accept = await self.client.wait_for("button_click", check = lambda i: self.i.custom_id == "accept")
+        deny = await self.client.wait_for("button_click", check = lambda i: self.i.custom_id == "deny")
 
         
         
