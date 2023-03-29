@@ -37,7 +37,7 @@ class Events(commands.Cog):
 
         
     @commands.Cog.listener()
-    async def on_message(message):
+    async def on_message(self, message):
         channel_id = 972899104793444412
     
         reaction_1 = ":thumbsup:"
