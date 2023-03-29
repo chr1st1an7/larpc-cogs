@@ -36,7 +36,7 @@ class Events(commands.Cog):
             await member.send(embed=embed)
 
         
-    @commands.event
+    @commands.Cog.listener()
     async def on_message(message):
         channel_id = 972899104793444412
     
