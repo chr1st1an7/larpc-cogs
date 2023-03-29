@@ -38,7 +38,7 @@ class Events(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, message):
-        suggestions_channel_id = 972899104793444412
+        suggestions_channel_id = 925703188814901268
     
         reaction_1 = "👍"
         reaction_2 = "👎"
