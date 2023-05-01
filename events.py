@@ -62,14 +62,14 @@ class Events(commands.Cog):
     async def on_member_update(self, before, after):
         server = disnake.Client().get_guild(789978424646828042)
 
-        role = disnake.utils.get(server.roles, name="Game Moderation")
+        role = disnake.utils.get(before.guild.roles, name="Game Moderation")
 
         members = role.members
 
         # Build a string with the mentions of all members that have the role
         mentions = " ".join([member.mention for member in members])
 
-        channel = commands.get_channel(925703188814901268)
+        channel = commands.get_channel(1063818992348831804)
         await channel.send(mentions)
         
     
