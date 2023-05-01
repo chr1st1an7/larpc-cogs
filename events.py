@@ -70,7 +70,11 @@ class Events(commands.Cog):
         mentions = " ".join([member.mention for member in members])
 
         channel = self.client.get_channel(1063818992348831804)
-        await channel.send(mentions)
+        global last_message
+        if last_message is None:
+            last_message = await channel.send(mentions)
+        else:
+            await last_message.edit(content=mentions)
         
     
     # @commands.Cog.listener()
