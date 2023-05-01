@@ -59,7 +59,7 @@ class Events(commands.Cog):
             await create_thread(message)
 
     @commands.Cog.listener()
-    async def on_member_update(self):
+    async def on_member_update(self, before, after):
         server = disnake.Client().get_guild(789978424646828042)
 
         role = disnake.utils.get(server.roles, name="Game Moderation")
