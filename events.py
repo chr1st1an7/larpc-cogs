@@ -57,12 +57,22 @@ class Events(commands.Cog):
 
         if message.channel.id == 949785685232066610:
             await create_thread(message)
+
+    @commands.Cog.listener()
+    async def on_member_update(self):
+        server = disnake.Client().get_guild(789978424646828042)
+
+        role = disnake.utils.get(server.roles, name="Game Moderation")
+
+        members = role.members
+
+        # Build a string with the mentions of all members that have the role
+        mentions = " ".join([member.mention for member in members])
+
+        channel = commands.get_channel(925703188814901268)
+        await channel.send(mentions)
         
     
-    
-
-    
-
     # @commands.Cog.listener()
     # async def on_message(self, message: Message) -> None:
     #     from disnake.ext.commands import CooldownMapping, BucketType
