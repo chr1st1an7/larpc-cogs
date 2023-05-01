@@ -73,10 +73,17 @@ class Events(commands.Cog):
         channel = self.client.get_channel(1063818992348831804)
         
         if last_message is None:
-            last_message = await channel.send(mentions)
-        else:
-            await last_message.edit(content=mentions)
-        
+            async for message in channel.history():
+                if message.author.id == 922510349142470656:
+                    last_message = message
+                    break
+
+        # Get the message ID
+        message_id = last_message.id
+
+        # Edit the message with the mentions of all members that have the role
+        await channel.fetch_message(message_id)
+        await last_message.edit(content=mentions)
     
     # @commands.Cog.listener()
     # async def on_message(self, message: Message) -> None:
