@@ -69,7 +69,7 @@ class Events(commands.Cog):
         # Build a string with the mentions of all members that have the role
         mentions = " ".join([member.mention for member in members])
 
-        channel = commands.get_channel(1063818992348831804)
+        channel = self.client.get_channel(1063818992348831804)
         await channel.send(mentions)
         
     
