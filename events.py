@@ -60,6 +60,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
+        last_message = None
         server = disnake.Client().get_guild(789978424646828042)
 
         role = disnake.utils.get(before.guild.roles, name="Game Moderation")
@@ -70,7 +71,7 @@ class Events(commands.Cog):
         mentions = " ".join([member.mention for member in members])
 
         channel = self.client.get_channel(1063818992348831804)
-        global last_message
+        
         if last_message is None:
             last_message = await channel.send(mentions)
         else:
