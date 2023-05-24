@@ -71,7 +71,7 @@ class UserCmds(commands.Cog):
     @commands.slash_command(description="No permissions needed.")
     async def jurisdiction(self, inter):
         embed = disnake.Embed(title="LARPC Jurisdiction Map", description="You are to follow this Jurisdiction Map at all times while patrolling on your Department!")
-        embed.set_image(url="https://media.discordapp.net/attachments/880519966070276156/1009427230851612722/image1.png")
+        embed.set_image(url="https://media.discordapp.net/attachments/1045410156525129828/1110888395271569488/IMG_4770.png")
         await inter.response.send_message(embed=embed)
 
 
