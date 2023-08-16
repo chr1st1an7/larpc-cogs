@@ -130,7 +130,7 @@ class Events(commands.Cog):
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
             author = message.author
-            embed.set_author(name=author.display_name, icon_url=author.avatar.url)
+            embed.set_author(name=f"{author.display_name} <:larpcbluecheck:1141342025485135954>", icon_url=author.avatar.url)
             if message.channel.id == channel_id:
                 await message.delete()
                 await channel.send(embed=embed)
