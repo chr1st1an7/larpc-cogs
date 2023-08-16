@@ -126,7 +126,8 @@ class Events(commands.Cog):
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
             await channel.send(embed=embed)
-            await message.delete()
+            if message.channel.id == channel:
+                await message.delete()
 
         
 
