@@ -119,8 +119,8 @@ class Events(commands.Cog):
         if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
             channel_id = 1141366263407452220  # Channel ID where you want to send the embed
             
-            if message.channel.id == channel_id:
-                return  # Prevent the bot from processing its own messages in the target channel
+            if message.author.bot or message.channel.id == channel_id:
+                return  # Prevent the bot from processing its own messages or messages in the target channel
             
             channel = self.bot.get_channel(channel_id)  # Fetch the channel
             
