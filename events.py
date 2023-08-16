@@ -7,7 +7,7 @@ from disnake import ButtonStyle, Interaction
 from disnake.ui import Select, View
 from disnake import User, NotFound, Forbidden, HTTPException
 from disnake.ext.commands import Context
-from datetime import datetime
+import datetime
 
 
 class Events(commands.Cog):
