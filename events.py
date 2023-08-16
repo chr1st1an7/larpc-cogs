@@ -119,10 +119,10 @@ class Events(commands.Cog):
         if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
             channel_id = 1141366263407452220  # Channel ID where you want to send the embed
             
-            if message.author.bot:
-                return  # Prevent the bot from processing its own messages or messages in the target channel
+            if message.author.client:
+                return  # Prevent the client from processing its own messages or messages in the target channel
             
-            channel = self.bot.get_channel(channel_id)  # Fetch the channel
+            channel = self.client.get_channel(channel_id)  # Fetch the channel
             
             embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
             
