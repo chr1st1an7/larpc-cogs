@@ -125,6 +125,9 @@ class Events(commands.Cog):
             if message.attachments:
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
+            author = message.author
+            embed.set_author(name=author.display_name, icon_url=author.avatar.url)
+
             await channel.send(embed=embed)
             if message.channel.id == channel:
                 await message.delete()
