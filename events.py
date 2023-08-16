@@ -124,7 +124,7 @@ class Events(commands.Cog):
             
             channel = self.client.get_channel(channel_id)  # Fetch the channel
             
-            embed = disnake.Embed(title="", description=f">{message.content}", color=0x1da1f2)
+            embed = disnake.Embed(title="", description=f"> {message.content}", color=0x1da1f2)
             
             if message.attachments:
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
@@ -136,7 +136,7 @@ class Events(commands.Cog):
                 await channel.send(embed=embed)
             
             current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-            embed.set_footer(current_time)
+            embed.set_footer(text=current_time, icon_url="")
 
 
             for message in channel.messages:
