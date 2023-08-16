@@ -136,7 +136,7 @@ class Events(commands.Cog):
                 await channel.send(embed=embed)
             
             current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-            embed.set_footer(text=current_time, icon_url="")
+            embed.set_footer(text=current_time)
 
 
             for message in channel.messages:
