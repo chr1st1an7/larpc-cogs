@@ -136,7 +136,21 @@ class Events(commands.Cog):
                 await channel.send(embed=embed)
             
 
-        
+            if message.reference:
+                replied_message = await message.channel.fetch_message(message.reference.message_id)
+                if self.bot.user.mentioned_in(replied_message):
+                    await replied_message.delete()
+                    
+                    # Create a reply embed
+                    reply_embed = disnake.Embed(
+                        title="",
+                        description=message.content,
+                        color=0x1da1f2
+                    )
+                    
+                    await message.reply(embed=reply_embed)
+            
+            await message.delete()
 
 
 
