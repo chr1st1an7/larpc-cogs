@@ -150,7 +150,6 @@ class Events(commands.Cog):
                     
                     await message.reply(embed=reply_embed)
             
-            await message.delete()
 
 
 
