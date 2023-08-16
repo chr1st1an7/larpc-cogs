@@ -132,7 +132,7 @@ class Events(commands.Cog):
             if message.attachments:
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
-            current_time = datetime.now().strftime("%I:%M %p")
+            current_time = datetime.datetime.now().strftime("%I:%M %p")
             embed.set_footer(text=current_time)
 
             author = message.author
