@@ -118,7 +118,11 @@ class Events(commands.Cog):
     async def on_message(self, message):
         if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
             channel_id = 1141366263407452220  # Channel ID where you want to send the embed
-            channel = self.client.get_channel(channel_id)  # Fetch the channel
+            
+            if message.channel.id == channel_id:
+                return  # Prevent the bot from processing its own messages in the target channel
+            
+            channel = self.bot.get_channel(channel_id)  # Fetch the channel
             
             embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
             
@@ -129,8 +133,8 @@ class Events(commands.Cog):
             embed.set_author(name=author.display_name, icon_url=author.avatar.url)
 
             await channel.send(embed=embed)
-            if message.channel.id == channel:
-                await message.delete()
+            await message.delete()
+
 
         
 
