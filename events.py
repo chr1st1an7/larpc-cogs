@@ -124,14 +124,17 @@ class Events(commands.Cog):
             
             channel = self.client.get_channel(channel_id)  # Fetch the channel
             
-            embed = disnake.Embed(title="", description=f"> {message.content}", color=0x1da1f2)
+            if message.content:
+                embed = disnake.Embed(title="", description=f"> {message.content}", color=0x1da1f2)
+            else:
+                embed = disnake.Embed(title="", description=f"{message.content}", color=0x1da1f2)
             
             if message.attachments:
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
-            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            current_time = datetime.now().strftime("%I:%M %p")
             embed.set_footer(text=current_time)
-            
+
             author = message.author
             embed.set_author(name=f"@{author.display_name}", icon_url=author.avatar.url)
             if message.channel.id == channel_id:
