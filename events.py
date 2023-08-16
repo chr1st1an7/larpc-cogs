@@ -115,15 +115,17 @@ class Events(commands.Cog):
     #     await commands.process_commands(message)
 
     @commands.Cog.listener()
-    async def on_message(self, message, ctx):
-        if ctx.guild == 1065766279144820826:
-            channel_id = 1141366263407452220
-            channel = self.client.get_channel(channel_id)
-            embed = disnake.Embed(title = "", description = message.content, color = 0x1da1f2)
-            if message.attachments:
-                embed.set_image(url=message.attachments.url)
+    async def on_message(self, message):
+        if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
+            channel_id = 1141366263407452220  # Channel ID where you want to send the embed
+            channel = self.bot.get_channel(channel_id)  # Fetch the channel
             
-            await message.channel.send(embed=embed)
+            embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
+            
+            if message.attachments:
+                embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
+            
+            await channel.send(embed=embed)
             await message.delete()
 
         
