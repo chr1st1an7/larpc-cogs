@@ -113,6 +113,18 @@ class Events(commands.Cog):
     #                 )
 
     #     await commands.process_commands(message)
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        channel_id = 1141366263407452220
+        channel = self.client.get_channel(channel_id)
+        embed = disnake.Embed(title = "", description = message.content, color = 0x1da1f2)
+        if message.attachments:
+            embed.set_image(url=message.attachment.url)
+        
+        await message.channel.send(embed=embed)
+        message.delete()
+
         
 
 

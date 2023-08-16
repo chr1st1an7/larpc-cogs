@@ -116,6 +116,8 @@ class Staff(commands.Cog):
         elif deny:
             await deny.send(content = "Ban request denied.")
 
+    
+
 
 
 def setup(client):
