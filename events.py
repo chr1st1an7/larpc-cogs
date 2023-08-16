@@ -129,14 +129,16 @@ class Events(commands.Cog):
             if message.attachments:
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            embed.set_footer(text=current_time)
+            
             author = message.author
             embed.set_author(name=f"@{author.display_name}", icon_url=author.avatar.url)
             if message.channel.id == channel_id:
                 await message.delete()
                 await channel.send(embed=embed)
             
-            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-            embed.set_footer(text=current_time)
+            
 
 
             # for message in channel.messages:
