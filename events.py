@@ -139,19 +139,19 @@ class Events(commands.Cog):
             embed.set_footer(text=current_time)
 
 
-            for message in channel.messages:
-                if message.reference:
-                    replied_message = await message.channel.fetch_message(message.reference.message_id)
-                    await replied_message.delete()
+            # for message in channel.messages:
+            #     if message.reference:
+            #         replied_message = await message.channel.fetch_message(message.reference.message_id)
+            #         await replied_message.delete()
                         
-                        # Create a reply embed
-                    reply_embed = disnake.Embed(
-                        title="",
-                        description=message.content,
-                        color=0x1da1f2
-                    )
+            #             # Create a reply embed
+            #         reply_embed = disnake.Embed(
+            #             title="",
+            #             description=message.content,
+            #             color=0x1da1f2
+            #         )
                         
-                    await message.reply(embed=reply_embed)
+            #         await message.reply(embed=reply_embed)
             
 
 
