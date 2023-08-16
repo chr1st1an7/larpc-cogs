@@ -120,10 +120,10 @@ class Events(commands.Cog):
         channel = self.client.get_channel(channel_id)
         embed = disnake.Embed(title = "", description = message.content, color = 0x1da1f2)
         if message.attachments:
-            embed.set_image(url=message.attachment.url)
+            embed.set_image(url=message.attachments.url)
         
         await message.channel.send(embed=embed)
-        message.delete()
+        await message.delete()
 
         
 
