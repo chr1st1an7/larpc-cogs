@@ -119,7 +119,7 @@ class Events(commands.Cog):
         if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
             channel_id = 1141366263407452220  # Channel ID where you want to send the embed
             
-            if message.author.bot or message.channel.id == channel_id:
+            if message.author.bot:
                 return  # Prevent the bot from processing its own messages or messages in the target channel
             
             channel = self.bot.get_channel(channel_id)  # Fetch the channel
@@ -131,10 +131,10 @@ class Events(commands.Cog):
             
             author = message.author
             embed.set_author(name=author.display_name, icon_url=author.avatar.url)
-
-            await channel.send(embed=embed)
-            await message.delete()
-
+            if message.channel.id == channel_id:
+                await message.delete()
+                await channel.send(embed=embed)
+            
 
         
 
