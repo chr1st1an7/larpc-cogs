@@ -115,7 +115,7 @@ class Events(commands.Cog):
     #     await commands.process_commands(message)
 
     @commands.Cog.listener()
-    async def on_message(self, ctx, message):
+    async def on_message(self, message, ctx):
         if ctx.guild == 1065766279144820826:
             channel_id = 1141366263407452220
             channel = self.client.get_channel(channel_id)
