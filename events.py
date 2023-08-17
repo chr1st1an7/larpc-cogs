@@ -8,7 +8,6 @@ from disnake.ui import Select, View
 from disnake import User, NotFound, Forbidden, HTTPException
 from disnake.ext.commands import Context
 import datetime
-import disnake.utils
 
 class Events(commands.Cog):
     def __init__(self, client):
@@ -129,7 +128,7 @@ class Events(commands.Cog):
                 embed = disnake.Embed(description=message.content)
 
             embed.set_author(name=message.author.display_name, icon_url=message.author.avatar.url)
-            timestamp = time.format(message.created_at, style="F")
+            timestamp = message.created_at.strftime("%B %d, %Y at %I:%M%p")
             embed.set_footer(text=timestamp)
 
             target_channel = self.client.get_channel(1141366263407452220)
