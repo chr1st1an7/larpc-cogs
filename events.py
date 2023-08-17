@@ -119,22 +119,27 @@ class Events(commands.Cog):
             if message.author == self.client.user:
              return  # Ignore messages sent by the bot itself
             # Check if the message has attachments
-            embed = None
             if message.attachments:
                 attachment = message.attachments[0]
-                embed = disnake.Embed()
+                embed = disnake.Embed(color = 0x1da1f2)
                 embed.set_image(url=attachment.url)
             else:
-                embed = disnake.Embed(description=message.content)
-
-            embed.set_author(name=message.author.display_name, icon_url=message.author.avatar.url)
+                embed = disnake.Embed(description=message.content, color = 0x1da1f2)
+            
+            embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
             timestamp = message.created_at
             current_time = datetime.datetime.now().strftime("%-I:%M %p")
             embed.set_footer(text=current_time)
+            if message.content:
+                embed = disnake.Embed(description=f"> {message.content}", color = 0x1da1f2)
+
+            else:
+                embed = disnake.Embed(description=message.content, color = 0x1da1f2)
 
             target_channel = self.client.get_channel(1141366263407452220)
             if target_channel:
                 sent_embed = await target_channel.send(embed=embed)
+                await message.delete()
 
                 def check(m):
                     return m.reference and m.reference.message_id == sent_embed.id
