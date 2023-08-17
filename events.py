@@ -138,7 +138,7 @@ class Events(commands.Cog):
             
 
             target_channel = self.client.get_channel(1141366263407452220)
-            if target_channel:
+            if target_channel and message.reference:
                 sent_embed = await target_channel.send(embed=embed)
                 await message.delete()
 
