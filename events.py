@@ -116,7 +116,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.channel.id == 1141366074240143412:
+        if message.channel.id == 1141366263407452220:
             # Check if the message has attachments
             embed = None
             if message.attachments:
@@ -126,7 +126,7 @@ class Events(commands.Cog):
             else:
                 embed = disnake.Embed(description=message.content)
 
-            embed.set_author(name=message.author.display_name, icon_url=message.author.avatar_url)
+            embed.set_author(name=message.author.display_name, icon_url=message.author.avatar.url)
             embed.set_footer(text=f"Original Message ID: {message.id}")
 
             target_channel = self.client.get_channel(1141366263407452220)
@@ -138,7 +138,7 @@ class Events(commands.Cog):
 
                 reply = await self.client.wait_for("message", check=check)
                 reply_embed = disnake.Embed(description=reply.content)
-                reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar_url)
+                reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar.url)
                 reply_embed.set_footer(text=f"Reply Message ID: {reply.id}")
 
                 await sent_embed.reply(embed=reply_embed)
