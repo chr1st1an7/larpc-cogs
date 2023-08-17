@@ -146,7 +146,8 @@ class Events(commands.Cog):
                     reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar.url)
                     reply_embed.set_footer(text=current_time)
 
-                    await sent_embed.reply(embed=reply_embed)
+                    reply_message = await target_channel.fetch_message(sent_embed.id)
+                    await reply_message.reply(embed=reply_embed)
 
         await self.client.process_commands(message)
 
