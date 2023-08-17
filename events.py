@@ -129,7 +129,7 @@ class Events(commands.Cog):
             if message.content:
                 embed.description = f"> {message.content}"
 
-            embed.set_author(name=f"@{message.author.name}", icon_url=message.author.avatar.url)
+            embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
             
             embed.timestamp = message.created_at
 
@@ -150,7 +150,7 @@ class Events(commands.Cog):
                         timestamp=sent_embed.created_at
                     ) 
                     reply_embed.set_author(
-                        name=reply.author.name,
+                        name=f"@{reply.author.display_name}",
                         icon_url=reply.author.avatar.url
                     )
                     
