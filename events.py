@@ -153,10 +153,6 @@ class Events(commands.Cog):
                         name=reply.author.name,
                         icon_url=reply.author.avatar.url
                     )
-                    reply_embed.set_footer(
-                        text=sent_embed.footer.text,
-                        icon_url=sent_embed.footer.icon_url
-                    )
                     
                     # If original embed has an image, copy it to the reply embed
                     if sent_embed.image:
