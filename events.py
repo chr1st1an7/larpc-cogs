@@ -124,9 +124,38 @@ class Events(commands.Cog):
                 attachment = message.attachments[0]
                 embed.set_image(url=attachment.url)
 
-            if message.content:
-                embed.description = f"> {message.content}"
+            messageContent = ""
 
+            if message.content:
+                messageContent = f"> {message.content}"
+            
+            else:
+                messageContent = message.content
+
+            blue_badge = message.guild.get_role(1141752546277462026)
+            golden_badge = message.guild.get_role(1141752640015958016)
+            grey_badge = message.guild.get_role(1141752742038229204)
+
+            if blue_badge in message.author.roles:
+                messageContent = f"""
+                :larpcbluecheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n\n
+                {messageContent}
+                """
+
+            if golden_badge in message.author.roles:
+                messageContent = f"""
+                :larpcgoldcheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n\n
+                {messageContent}
+                """
+            
+            if grey_badge in message.author.roles:
+                messageContent = f"""
+                :larpcgreycheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n\n
+                {messageContent}
+                """
+
+
+            embed.description = messageContent
             embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
             
             embed.timestamp = message.created_at
