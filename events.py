@@ -124,17 +124,18 @@ class Events(commands.Cog):
                 embed = disnake.Embed(color = 0x1da1f2)
                 embed.set_image(url=attachment.url)
             else:
-                embed = disnake.Embed(description=message.content, color = 0x1da1f2)
-            
-            embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
-            timestamp = message.created_at
-            current_time = datetime.datetime.now().strftime("%-I:%M %p")
-            embed.set_footer(text=current_time)
+                embed = disnake.Embed(color = 0x1da1f2)
+
             if message.content:
                 embed = disnake.Embed(description=f"> {message.content}", color = 0x1da1f2)
 
             else:
-                embed = disnake.Embed(description=message.content, color = 0x1da1f2)
+                embed = disnake.Embed(color = 0x1da1f2)
+
+            embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
+            current_time = datetime.datetime.now().strftime("%-I:%M %p")
+            embed.set_footer(text=current_time)
+            
 
             target_channel = self.client.get_channel(1141366263407452220)
             if target_channel:
