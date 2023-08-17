@@ -117,14 +117,12 @@ class Events(commands.Cog):
     async def on_message(self, message):
         if message.channel.id == 1141711874098991166 and not message.reference:
             if message.author == self.client.user:
-                return  # Ignore messages sent by the bot itself
+                return
 
+            embed = disnake.Embed(color=0x1da1f2)
             if message.attachments:
                 attachment = message.attachments[0]
-                embed = disnake.Embed(color=0x1da1f2)
                 embed.set_image(url=attachment.url)
-            else:
-                embed = disnake.Embed(color=0x1da1f2)
 
             if message.content:
                 embed.description = f"> {message.content}"
@@ -143,7 +141,6 @@ class Events(commands.Cog):
 
                     reply = await self.client.wait_for("message", check=check)
                     
-                    # Copy details from the original embed to the reply embed
                     reply_embed = disnake.Embed(
                         description=f"> {reply.content}",
                         color=0x1da1f2,
@@ -154,13 +151,8 @@ class Events(commands.Cog):
                         icon_url=reply.author.avatar.url
                     )
                     
-                    # If original embed has an image, copy it to the reply embed
 
                     await sent_embed.reply(embed=reply_embed)
-
-                
-
-        await self.client.process_commands(message)
-
+                    
 def setup(client):
     client.add_cog(Events(client))
