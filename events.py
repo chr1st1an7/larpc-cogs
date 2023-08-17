@@ -117,25 +117,18 @@ class Events(commands.Cog):
     async def on_message(self, message):
         if message.channel.id == 1141711874098991166 and not message.reference:
             if message.author == self.client.user:
-             return  # Ignore messages sent by the bot itself
-            # Check if the message has attachments
+                return  # Ignore messages sent by the bot itself
             if message.attachments:
                 attachment = message.attachments[0]
-                embed = disnake.Embed(color = 0x1da1f2)
+                embed = disnake.Embed(color=0x1da1f2)
                 embed.set_image(url=attachment.url)
             else:
-                embed = disnake.Embed(color = 0x1da1f2)
-
+                embed = disnake.Embed(color=0x1da1f2)
             if message.content:
-                embed = disnake.Embed(description=f"> {message.content}", color = 0x1da1f2)
-
-            else:
-                embed = disnake.Embed(color = 0x1da1f2)
-
+                embed.description = f"> {message.content}"
             embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
             current_time = datetime.datetime.now().strftime("%-I:%M %p")
             embed.set_footer(text=current_time)
-            
             target_channel = self.client.get_channel(1141711874098991166)
             if target_channel:
                 sent_embed = await target_channel.send(embed=embed)
@@ -143,9 +136,8 @@ class Events(commands.Cog):
                 while True:
                     def check(m):
                         return m.reference and m.reference.message_id == sent_embed.id
-
                     reply = await self.client.wait_for("message", check=check)
-                    reply_embed = disnake.Embed(description=reply.content)
+                    reply_embed = disnake.Embed(description=reply.content, color=0x1da1f2)
                     reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar.url)
                     reply_embed.set_footer(text=current_time)
 
