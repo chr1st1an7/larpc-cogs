@@ -125,7 +125,7 @@ class Events(commands.Cog):
             if message.author.bot or message.channel.id == channel_id:
                 return  # Prevent the bot from processing its own messages or messages in the target channel
             
-            channel = self.bot.get_channel(channel_id)  # Fetch the channel
+            channel = self.client.get_channel(channel_id)  # Fetch the channel
             
             embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
             
