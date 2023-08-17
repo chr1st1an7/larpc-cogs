@@ -117,6 +117,8 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.channel.id == 1141366263407452220:
+            if message.author == self.client.user:
+             return  # Ignore messages sent by the bot itself
             # Check if the message has attachments
             embed = None
             if message.attachments:
