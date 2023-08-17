@@ -143,7 +143,7 @@ class Events(commands.Cog):
             embed.set_footer(text=footer_text)
             
             # Send the embed to the specified channel and track the message
-            reply_channel = self.client.get_channel(self.reply_channel_id)
+            reply_channel = self.client.get_channel(1141366263407452220)
             sent_embed = await reply_channel.send(embed=embed)
             self.tracked_messages[sent_embed.id] = author.id
 
