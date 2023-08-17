@@ -145,7 +145,7 @@ class Events(commands.Cog):
                     
                     # Copy details from the original embed to the reply embed
                     reply_embed = disnake.Embed(
-                        description=reply.content,
+                        description=f"> {reply.content}",
                         color=0x1da1f2,
                         timestamp=sent_embed.created_at
                     ) 
