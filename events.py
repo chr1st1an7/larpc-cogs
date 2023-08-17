@@ -13,6 +13,8 @@ import datetime
 class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.tracked_messages = {}  # Dictionary to track messages and their authors
+        self.reply_channel_id = 123456789012345678  # Replace with the desired reply channel ID
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -140,8 +142,9 @@ class Events(commands.Cog):
             footer_text = f"Today at {current_time}"
             embed.set_footer(text=footer_text)
             
-            # Send the embed and track the message
-            sent_embed = await channel.send(embed=embed)
+            # Send the embed to the specified channel and track the message
+            reply_channel = self.client.get_channel(self.reply_channel_id)
+            sent_embed = await reply_channel.send(embed=embed)
             self.tracked_messages[sent_embed.id] = author.id
 
     async def process_reply(self, reply_message):
