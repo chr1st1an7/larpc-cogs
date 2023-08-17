@@ -129,7 +129,7 @@ class Events(commands.Cog):
 
             embed.set_author(name=message.author.display_name, icon_url=message.author.avatar.url)
             timestamp = message.created_at
-            formatted_timestamp = timestamp.strftime("%-I:%M %p")
+            formatted_timestamp = timestamp.strftime(r"%I:%M %p")
             embed.set_footer(text=formatted_timestamp)
 
             target_channel = self.client.get_channel(1141366263407452220)
