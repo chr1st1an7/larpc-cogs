@@ -148,10 +148,10 @@ class Events(commands.Cog):
                         description=reply.content,
                         color=0x1da1f2,
                         timestamp=sent_embed.created_at
-                    )
+                    ) 
                     reply_embed.set_author(
-                        name=reply_embed.author.name,
-                        icon_url=reply_embed.author.avatar.url
+                        name=reply.author.name,
+                        icon_url=reply.author.avatar.url
                     )
                     reply_embed.set_footer(
                         text=sent_embed.footer.text,
