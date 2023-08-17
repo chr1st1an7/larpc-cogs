@@ -13,8 +13,6 @@ import datetime
 class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.tracked_messages = {}  # Dictionary to track messages and their authors
-        self.reply_channel_id = 123456789012345678  # Replace with the desired reply channel ID
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -118,54 +116,34 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
-            if channel.id == 1141366263407452220:
-                channel_id = 1141366263407452220  # Channel ID where you want to process replies
-                
-                if message.channel.id == channel_id:
-                    await self.process_reply(message)
-                    
-                if message.author.bot or message.channel.id == channel_id:
-                    return  # Prevent the bot from processing its own messages or messages in the target channel
-                
-                channel = self.client.get_channel(channel_id)  # Fetch the channel
-                
-                embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
-                
-                if message.attachments:
-                    embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
-                
-                author = message.author
-                embed.set_author(name=author.display_name, icon_url=author.avatar.url)
-                
-                # Set footer with current time
-                current_time = datetime.datetime.now().strftime("%-I:%M %p")  # %p adds AM/PM based on locale
-                footer_text = f"Today at {current_time}"
-                embed.set_footer(text=footer_text)
-                
-                # Send the embed to the specified channel and track the message
-                reply_channel = self.client.get_channel(1141366263407452220)
-                sent_embed = await reply_channel.send(embed=embed)
-                self.tracked_messages[sent_embed.id] = author.id
+        if message.channel.id == 1141366074240143412:
+            # Check if the message has attachments
+            embed = None
+            if message.attachments:
+                attachment = message.attachments[0]
+                embed = disnake.Embed()
+                embed.set_image(url=attachment.url)
+            else:
+                embed = disnake.Embed(description=message.content)
 
-    async def process_reply(self, reply_message):
-        if reply_message.reference:
-            replied_message = await reply_message.channel.fetch_message(reply_message.reference.message_id)
-            if replied_message.id in self.tracked_messages:
-                mentioned_author_id = self.tracked_messages[replied_message.id]
-                mentioned_author = reply_message.guild.get_member(mentioned_author_id)
-                
-                # Create a reply embed
-                reply_embed = disnake.Embed(
-                    title="Reply from Bot",
-                    description=f"Replying to {mentioned_author.mention}",
-                    color=0x1da1f2
-                )
-                
-                await replied_message.reply(embed=reply_embed)
-                
-                # Remove the tracked message
-                del self.tracked_messages[replied_message.id]
+            embed.set_author(name=message.author.display_name, icon_url=message.author.avatar_url)
+            embed.set_footer(text=f"Original Message ID: {message.id}")
+
+            target_channel = self.client.get_channel(1141366263407452220)
+            if target_channel:
+                sent_embed = await target_channel.send(embed=embed)
+
+                def check(m):
+                    return m.reference and m.reference.message_id == sent_embed.id
+
+                reply = await self.client.wait_for("message", check=check)
+                reply_embed = disnake.Embed(description=reply.content)
+                reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar_url)
+                reply_embed.set_footer(text=f"Reply Message ID: {reply.id}")
+
+                await sent_embed.reply(embed=reply_embed)
+
+        await self.client.process_commands(message)
 
 def setup(client):
     client.add_cog(Events(client))
