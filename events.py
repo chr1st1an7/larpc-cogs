@@ -130,7 +130,7 @@ class Events(commands.Cog):
                 embed.description = f"> {message.content}"
 
             embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
-            current_time = message.created_at
+            current_time = embed.created_at
             embed.set_footer(text=current_time)
 
             target_channel = self.client.get_channel(1141711874098991166)
