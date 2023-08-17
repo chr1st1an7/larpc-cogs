@@ -137,7 +137,7 @@ class Staff(commands.Cog):
         if badge == "Grey Badge":
             role = grey_badge
 
-        member.add_roles(role)
+        await member.add_roles(role)
 
         await inter.response.send_message(f"Added the {badge} to {member}. ", ephemeral=True)
 
