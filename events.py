@@ -129,9 +129,9 @@ class Events(commands.Cog):
             if message.content:
                 embed.description = f"> {message.content}"
 
-            embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
-            current_time = embed.created_at
-            embed.set_footer(text=current_time)
+            embed.set_author(name=f"@{message.author.username}", icon_url=message.author.avatar.url)
+            
+            embed.timestamp = message.created_at
 
             target_channel = self.client.get_channel(1141711874098991166)
             if target_channel:
@@ -150,13 +150,15 @@ class Events(commands.Cog):
                         timestamp=sent_embed.created_at
                     ) 
                     reply_embed.set_author(
-                        name=reply.author.display_name,
+                        name=reply.author.username,
                         icon_url=reply.author.avatar.url
                     )
                     
                     # If original embed has an image, copy it to the reply embed
 
                     await sent_embed.reply(embed=reply_embed)
+
+                
 
         await self.client.process_commands(message)
 
