@@ -118,49 +118,51 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
-            channel_id = 1141366263407452220  # Channel ID where you want to send the embed
+            channel_id = 1141366263407452220  # Channel ID where you want to process replies
             
-            if message.author.bot:
-                return  # Prevent the client from processing its own messages or messages in the target channel
+            if message.channel.id == channel_id:
+                await self.process_reply(message)
+                
+            if message.author.bot or message.channel.id == channel_id:
+                return  # Prevent the bot from processing its own messages or messages in the target channel
             
-            channel = self.client.get_channel(channel_id)  # Fetch the channel
+            channel = self.bot.get_channel(channel_id)  # Fetch the channel
             
-            if message.content:
-                embed = disnake.Embed(title="", description=f"> {message.content}", color=0x1da1f2)
-            else:
-                embed = disnake.Embed(title="", description=f"{message.content}", color=0x1da1f2)
+            embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
             
             if message.attachments:
                 embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
             
-            current_time = datetime.datetime.now().strftime("%-I:%M %p")
-            embed.set_footer(text=current_time)
-
             author = message.author
-            embed.set_author(name=f"@{author.display_name}", icon_url=author.avatar.url)
-            if message.channel.id == channel_id:
-                await message.delete()
-                await channel.send(embed=embed)
+            embed.set_author(name=author.display_name, icon_url=author.avatar.url)
             
+            # Set footer with current time
+            current_time = datetime.datetime.now().strftime("%-I:%M %p")  # %p adds AM/PM based on locale
+            footer_text = f"Today at {current_time}"
+            embed.set_footer(text=footer_text)
             
+            # Send the embed and track the message
+            sent_embed = await channel.send(embed=embed)
+            self.tracked_messages[sent_embed.id] = author.id
 
-
-            # for message in channel.messages:
-            #     if message.reference:
-            #         replied_message = await message.channel.fetch_message(message.reference.message_id)
-            #         await replied_message.delete()
-                        
-            #             # Create a reply embed
-            #         reply_embed = disnake.Embed(
-            #             title="",
-            #             description=message.content,
-            #             color=0x1da1f2
-            #         )
-                        
-            #         await message.reply(embed=reply_embed)
-            
-
-
+    async def process_reply(self, reply_message):
+        if reply_message.reference:
+            replied_message = await reply_message.channel.fetch_message(reply_message.reference.message_id)
+            if replied_message.id in self.tracked_messages:
+                mentioned_author_id = self.tracked_messages[replied_message.id]
+                mentioned_author = reply_message.guild.get_member(mentioned_author_id)
+                
+                # Create a reply embed
+                reply_embed = disnake.Embed(
+                    title="Reply from Bot",
+                    description=f"Replying to {mentioned_author.mention}",
+                    color=0x1da1f2
+                )
+                
+                await replied_message.reply(embed=reply_embed)
+                
+                # Remove the tracked message
+                del self.tracked_messages[replied_message.id]
 
 def setup(client):
     client.add_cog(Events(client))
