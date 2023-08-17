@@ -138,19 +138,19 @@ class Events(commands.Cog):
 
             if blue_badge in message.author.roles:
                 messageContent = f"""
-                :larpcbluecheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n\n
+                :larpcbluecheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                 {messageContent}
                 """
 
             if golden_badge in message.author.roles:
                 messageContent = f"""
-                :larpcgoldcheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n\n
+                :larpcgoldcheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                 {messageContent}
                 """
             
             if grey_badge in message.author.roles:
                 messageContent = f"""
-                :larpcgreycheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n\n
+                :larpcgreycheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                 {messageContent}
                 """
 
@@ -179,8 +179,34 @@ class Events(commands.Cog):
                         name=f"@{reply.author.display_name}",
                         icon_url=reply.author.avatar.url
                     )
-                    
 
+                    messageContent = ""
+
+                    if message.content:
+                        messageContent = f"> {reply.content}"
+                    
+                    else:
+                        messageContent = reply.content
+                            
+                    if blue_badge in reply.author.roles:
+                        messageContent = f"""
+                        :larpcbluecheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                        {messageContent}
+                        """
+
+                    if golden_badge in reply.author.roles:
+                        messageContent = f"""
+                        :larpcgoldcheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                        {messageContent}
+                        """
+                    
+                    if grey_badge in reply.author.roles:
+                        messageContent = f"""
+                        :larpcgreycheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                        {messageContent}
+                        """
+                    
+                    reply_embed.description = messageContent
                     await sent_embed.reply(embed=reply_embed)
                     
 def setup(client):
