@@ -138,19 +138,19 @@ class Events(commands.Cog):
 
             if blue_badge in message.author.roles:
                 messageContent = f"""
-                :larpcbluecheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                <:larpcbluecheck:1141342025485135954> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                 {messageContent}
                 """
 
             if golden_badge in message.author.roles:
                 messageContent = f"""
-                :larpcgoldcheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                <:larpcgoldcheck:1141342038378418176>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                 {messageContent}
                 """
             
             if grey_badge in message.author.roles:
                 messageContent = f"""
-                :larpcgreycheck: [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                <:larpcgraycheck:1141342061728124968> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                 {messageContent}
                 """
 
@@ -196,13 +196,13 @@ class Events(commands.Cog):
 
                     if golden_badge in reply.author.roles:
                         messageContent = f"""
-                        <:larpcbluecheck:1141342025485135954> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                        <:larpcgoldcheck:1141342038378418176>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                         {messageContent}
                         """
                     
                     if grey_badge in reply.author.roles:
                         messageContent = f"""
-                        <:larpcgraycheck:1141342061728124968> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
+                        <:larpcgraycheck:1141342061728124968>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850) \n
                         {messageContent}
                         """
                     
