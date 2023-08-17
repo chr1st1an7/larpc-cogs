@@ -142,11 +142,11 @@ class Events(commands.Cog):
                         return m.reference and m.reference.message_id == sent_embed.id
 
                     reply = await self.client.wait_for("message", check=check)
-                    reply_embed = disnake.Embed(description=reply.content)
+                    reply_embed = disnake.Embed(description=reply.content, color=0x1da1f2)
                     reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar.url)
                     reply_embed.set_footer(text=current_time)
 
-                    await sent_embed.reply(embed=reply_embed)  # Use reply method to reply to a reply
+                    await sent_embed.reply(embed=reply_embed)
 
         await self.client.process_commands(message)
 
