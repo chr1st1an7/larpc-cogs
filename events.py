@@ -141,16 +141,16 @@ class Events(commands.Cog):
             if target_channel:
                 sent_embed = await target_channel.send(embed=embed)
                 await message.delete()
+                while True:
+                    def check(m):
+                        return m.reference and m.reference.message_id == sent_embed.id
 
-                def check(m):
-                    return m.reference and m.reference.message_id == sent_embed.id
+                    reply = await self.client.wait_for("message", check=check)
+                    reply_embed = disnake.Embed(description=reply.content)
+                    reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar.url)
+                    reply_embed.set_footer(text=current_time)
 
-                reply = await self.client.wait_for("message", check=check)
-                reply_embed = disnake.Embed(description=reply.content)
-                reply_embed.set_author(name=reply.author.display_name, icon_url=reply.author.avatar.url)
-                reply_embed.set_footer(text=current_time)
-
-                await sent_embed.reply(embed=reply_embed)
+                    await sent_embed.reply(embed=reply_embed)
 
         await self.client.process_commands(message)
 
