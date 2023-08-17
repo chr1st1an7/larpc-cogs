@@ -150,8 +150,8 @@ class Events(commands.Cog):
                         timestamp=sent_embed.created_at
                     )
                     reply_embed.set_author(
-                        name=sent_embed.author.name,
-                        icon_url=sent_embed.author.icon_url
+                        name=reply_embed.author.name,
+                        icon_url=reply_embed.author.avatar.url
                     )
                     reply_embed.set_footer(
                         text=sent_embed.footer.text,
