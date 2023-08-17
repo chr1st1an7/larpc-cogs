@@ -119,33 +119,34 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.guild and message.guild.id == 1065766279144820826:  # Check the guild ID
-            channel_id = 1141366263407452220  # Channel ID where you want to process replies
-            
-            if message.channel.id == channel_id:
-                await self.process_reply(message)
+            if channel.id == 1141366263407452220:
+                channel_id = 1141366263407452220  # Channel ID where you want to process replies
                 
-            if message.author.bot or message.channel.id == channel_id:
-                return  # Prevent the bot from processing its own messages or messages in the target channel
-            
-            channel = self.client.get_channel(channel_id)  # Fetch the channel
-            
-            embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
-            
-            if message.attachments:
-                embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
-            
-            author = message.author
-            embed.set_author(name=author.display_name, icon_url=author.avatar.url)
-            
-            # Set footer with current time
-            current_time = datetime.datetime.now().strftime("%-I:%M %p")  # %p adds AM/PM based on locale
-            footer_text = f"Today at {current_time}"
-            embed.set_footer(text=footer_text)
-            
-            # Send the embed to the specified channel and track the message
-            reply_channel = self.client.get_channel(1141366263407452220)
-            sent_embed = await reply_channel.send(embed=embed)
-            self.tracked_messages[sent_embed.id] = author.id
+                if message.channel.id == channel_id:
+                    await self.process_reply(message)
+                    
+                if message.author.bot or message.channel.id == channel_id:
+                    return  # Prevent the bot from processing its own messages or messages in the target channel
+                
+                channel = self.client.get_channel(channel_id)  # Fetch the channel
+                
+                embed = disnake.Embed(title="", description=message.content, color=0x1da1f2)
+                
+                if message.attachments:
+                    embed.set_image(url=message.attachments[0].url)  # Get the URL of the first attachment
+                
+                author = message.author
+                embed.set_author(name=author.display_name, icon_url=author.avatar.url)
+                
+                # Set footer with current time
+                current_time = datetime.datetime.now().strftime("%-I:%M %p")  # %p adds AM/PM based on locale
+                footer_text = f"Today at {current_time}"
+                embed.set_footer(text=footer_text)
+                
+                # Send the embed to the specified channel and track the message
+                reply_channel = self.client.get_channel(1141366263407452220)
+                sent_embed = await reply_channel.send(embed=embed)
+                self.tracked_messages[sent_embed.id] = author.id
 
     async def process_reply(self, reply_message):
         if reply_message.reference:
