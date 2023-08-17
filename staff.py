@@ -25,6 +25,10 @@ class Staff(commands.Cog):
         if inter.author.id in ids or role in inter.author.roles:
             return True
 
+    def badge_check(inter):
+        ids = [655735547297529876, 649280874550132746]
+        if inter.author.id in ids:
+            return True
 
     @commands.slash_command(description="Game Moderation role required. Requests assistance in-game (requests more staff members to join).")
     @commands.check(check_id)
@@ -117,8 +121,25 @@ class Staff(commands.Cog):
             await deny.send(content = "Ban request denied.")
 
     
+    @commands.slash_command()
+    @commands.check(badge_check)
+    async def givebadge(self, inter, member : disnake.Member, badge : str = commands.Param(choices=["Blue Badge", "Golden Badge", "Grey Badge"])):
+        blue_badge = inter.guild.get_role(1141752546277462026)
+        golden_badge = inter.guild.get_role(1141752640015958016)
+        grey_badge = inter.guild.get_role(1141752742038229204)
 
+        role = None
 
+        if badge == "Blue Badge":
+            role = blue_badge
+        if badge == "Golden Badge":
+            role = golden_badge
+        if badge == "Grey Badge":
+            role = grey_badge
+
+        member.add_roles(role)
+
+        await inter.response.send_message(f"Added the {badge} to {member}. ", ephemeral=True)
 
 def setup(client):
     client.add_cog(Staff(client))
