@@ -8,7 +8,7 @@ from disnake.ui import Select, View
 from disnake import User, NotFound, Forbidden, HTTPException
 from disnake.ext.commands import Context
 import datetime
-from disnake.utils import time
+import disnake.utils
 
 class Events(commands.Cog):
     def __init__(self, client):
