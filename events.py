@@ -155,8 +155,6 @@ class Events(commands.Cog):
                     )
                     
                     # If original embed has an image, copy it to the reply embed
-                    if sent_embed.image:
-                        reply_embed.set_image(url=sent_embed.image.url)
 
                     await sent_embed.reply(embed=reply_embed)
 
