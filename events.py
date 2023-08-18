@@ -109,22 +109,15 @@ class Events(commands.Cog):
             grey_badge = message.guild.get_role(1141756262716014613)
 
             if blue_badge in message.author.roles:
-                messageContent = f"""
-                <:larpcbluecheck:1141342025485135954> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
-                {messageContent}
-                """
+                messageContent = f"<:larpcbluecheck:1141342025485135954> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)\n {messageContent}"
+        
 
             if golden_badge in message.author.roles:
-                messageContent = f"""
-                <:larpcgoldcheck:1141342038378418176>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
-                {messageContent}
-                """
+                messageContent = f"<:larpcgoldcheck:1141342038378418176>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)\n {messageContent}"
+                
             
             if grey_badge in message.author.roles:
-                messageContent = f"""
-                <:larpcgraycheck:1141342061728124968> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
-                {messageContent}
-                """
+                messageContent = f"<:larpcgraycheck:1141342061728124968> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)\n {messageContent}"
 
 
             embed.description = messageContent
@@ -187,22 +180,13 @@ class Events(commands.Cog):
                         messageContent = reply.content
                             
                     if blue_badge in reply.author.roles:
-                        messageContent = f"""
-                        <:larpcbluecheck:1141342025485135954> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
-                        {messageContent}
-                        """
+                        messageContent = f"<:larpcbluecheck:1141342025485135954> [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)\n {messageContent}"
 
                     if golden_badge in reply.author.roles:
-                        messageContent = f"""
-                        <:larpcgoldcheck:1141342038378418176>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
-                        {messageContent}
-                        """
+                        messageContent = f"<:larpcgoldcheck:1141342038378418176>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)\n {messageContent}"
                     
                     if grey_badge in reply.author.roles:
-                        messageContent = f"""
-                        <:larpcgraycheck:1141342061728124968>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
-                        {messageContent}
-                        """
+                        messageContent = f" <:larpcgraycheck:1141342061728124968>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)\n {messageContent}"
                     await reply.delete()
                     reply_embed.description = messageContent
                     reply_message = await sent_embed.reply(embed=reply_embed)
