@@ -185,6 +185,8 @@ class Events(commands.Cog):
 
                     reply = await self.client.wait_for("message", check=check)
 
+                    
+
                     bloxlink_api = requests.get(f'https://api.blox.link/v4/public/guilds/789978424646828042/discord-to-roblox/{reply.author.id}',  headers={"Authorization" : "06920ac3-f78f-4d09-a345-ec1459048ca0"})
                     data = bloxlink_api.json()
 
@@ -230,7 +232,7 @@ class Events(commands.Cog):
                         <:larpcgraycheck:1141342061728124968>  [`This user is verified.`](https://discord.com/channels/789978424646828042/1141325558341451797/1141751856775843850)
                         {messageContent}
                         """
-                    
+                    await reply.delete()
                     reply_embed.description = messageContent
                     reply_message = await sent_embed.reply(embed=reply_embed)
                     await reply_message.add_reaction("<:larpclike:1141681050905489560>")
