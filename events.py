@@ -99,7 +99,7 @@ class Events(commands.Cog):
             messageContent = ""
 
             if message.content:
-                messageContent = f">>> {message.content}"
+                messageContent = f">>> {message.content}\n"
             
             else:
                 messageContent = message.content
