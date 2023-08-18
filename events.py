@@ -169,7 +169,7 @@ class Events(commands.Cog):
             data = roblox_api.json()
             username = data["name"]
 
-            embed.set_author(name=f"@{message.author.display_name} ({username})", icon_url=message.author.avatar.url)
+            embed.set_author(name=f"@{message.author.name} ({username})", icon_url=message.author.avatar.url)
             
             embed.timestamp = message.created_at
 
@@ -201,7 +201,7 @@ class Events(commands.Cog):
                         timestamp=sent_embed.created_at
                     ) 
                     reply_embed.set_author(
-                        name=f"@{reply.author.display_name} ({username})",
+                        name=f"@{reply.author.name} ({username})",
                         icon_url=reply.author.avatar.url
                     )
 
@@ -232,8 +232,8 @@ class Events(commands.Cog):
                         """
                     
                     reply_embed.description = messageContent
-                    await sent_embed.reply(embed=reply_embed)
-                    await reply_embed.add_reaction("<:larpclike:1141681050905489560>")
+                    reply_message = await sent_embed.reply(embed=reply_embed)
+                    await reply_message.add_reaction("<:larpclike:1141681050905489560>")
                     
 def setup(client):
     client.add_cog(Events(client))
