@@ -175,15 +175,6 @@ class Events(commands.Cog):
 
             target_channel = self.client.get_channel(1141711874098991166)
             if target_channel:
-                bloxlink_api = requests.get(f'https://api.blox.link/v4/public/guilds/789978424646828042/discord-to-roblox/{reply.author.id}',  headers={"Authorization" : "06920ac3-f78f-4d09-a345-ec1459048ca0"})
-                data = bloxlink_api.json()
-
-                robloxID = data["robloxID"]
-
-                roblox_api = requests.get(f"https://users.roblox.com/v1/users/{robloxID}")
-
-                data = roblox_api.json()
-                username = data["name"]
 
                 sent_embed = await target_channel.send(embed=embed)
                 await message.delete()
@@ -192,6 +183,16 @@ class Events(commands.Cog):
                         return m.reference and m.reference.message_id == sent_embed.id
 
                     reply = await self.client.wait_for("message", check=check)
+
+                    bloxlink_api = requests.get(f'https://api.blox.link/v4/public/guilds/789978424646828042/discord-to-roblox/{reply.author.id}',  headers={"Authorization" : "06920ac3-f78f-4d09-a345-ec1459048ca0"})
+                    data = bloxlink_api.json()
+
+                    robloxID = data["robloxID"]
+
+                    roblox_api = requests.get(f"https://users.roblox.com/v1/users/{robloxID}")
+
+                    data = roblox_api.json()
+                    username = data["name"]
                     
                     reply_embed = disnake.Embed(
                         description=f"> {reply.content}",
