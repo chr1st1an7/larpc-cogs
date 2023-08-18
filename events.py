@@ -167,7 +167,7 @@ class Events(commands.Cog):
             roblox_api = requests.get(f"https://api.roblox.com/users/{robloxID}")
 
             data = roblox_api.json()
-            username = data["Username"]
+            username = data["name"]
 
             embed.set_author(name=f"@{message.author.display_name} ({username})", icon_url=message.author.avatar.url)
             
@@ -180,11 +180,11 @@ class Events(commands.Cog):
 
                 robloxID = data["robloxID"]
 
-                roblox_api = requests.get(f"https://api.roblox.com/users/{robloxID}")
+                roblox_api = requests.get(f"https://users.roblox.com/v1/users/{robloxID}")
 
                 data = roblox_api.json()
-                username = data["Username"]
-                
+                username = data["name"]
+
                 sent_embed = await target_channel.send(embed=embed)
                 await message.delete()
                 while True:
