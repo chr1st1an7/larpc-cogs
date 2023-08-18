@@ -164,7 +164,7 @@ class Events(commands.Cog):
 
             robloxID = data["robloxID"]
 
-            roblox_api = requests.get(f"https://api.roblox.com/users/{robloxID}")
+            roblox_api = requests.get(f"https://users.roblox.com/v1/users/{robloxID}")
 
             data = roblox_api.json()
             username = data["name"]
