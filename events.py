@@ -8,6 +8,7 @@ from disnake.ui import Select, View
 from disnake import User, NotFound, Forbidden, HTTPException
 from disnake.ext.commands import Context
 import datetime
+import requests
 
 class Events(commands.Cog):
     def __init__(self, client):
@@ -115,7 +116,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.channel.id == 1141711874098991166 and not message.reference:
+        if message.channel.id == 1141711874098991166 and not message.reference and not message.author.bot:
             if message.author == self.client.user:
                 return
 
@@ -127,7 +128,7 @@ class Events(commands.Cog):
             messageContent = ""
 
             if message.content:
-                messageContent = f"> {message.content}"
+                messageContent = f">>> {message.content}"
             
             else:
                 messageContent = message.content
@@ -156,12 +157,34 @@ class Events(commands.Cog):
 
 
             embed.description = messageContent
-            embed.set_author(name=f"@{message.author.display_name}", icon_url=message.author.avatar.url)
+
+
+            bloxlink_api = requests.get(f'https://api.blox.link/v4/public/guilds/789978424646828042/discord-to-roblox/{message.author.id}',  headers={"Authorization" : "06920ac3-f78f-4d09-a345-ec1459048ca0"})
+            data = bloxlink_api.json()
+
+            robloxID = data["robloxID"]
+
+            roblox_api = requests.get(f"https://api.roblox.com/users/{robloxID}")
+
+            data = roblox_api.json()
+            username = data["Username"]
+
+            embed.set_author(name=f"@{message.author.display_name} ({username})", icon_url=message.author.avatar.url)
             
             embed.timestamp = message.created_at
 
             target_channel = self.client.get_channel(1141711874098991166)
             if target_channel:
+                bloxlink_api = requests.get(f'https://api.blox.link/v4/public/guilds/789978424646828042/discord-to-roblox/{reply.author.id}',  headers={"Authorization" : "06920ac3-f78f-4d09-a345-ec1459048ca0"})
+                data = bloxlink_api.json()
+
+                robloxID = data["robloxID"]
+
+                roblox_api = requests.get(f"https://api.roblox.com/users/{robloxID}")
+
+                data = roblox_api.json()
+                username = data["Username"]
+                
                 sent_embed = await target_channel.send(embed=embed)
                 await message.delete()
                 while True:
@@ -176,14 +199,14 @@ class Events(commands.Cog):
                         timestamp=sent_embed.created_at
                     ) 
                     reply_embed.set_author(
-                        name=f"@{reply.author.display_name}",
+                        name=f"@{reply.author.display_name} ({username})",
                         icon_url=reply.author.avatar.url
                     )
 
                     messageContent = ""
 
                     if message.content:
-                        messageContent = f"> {reply.content}"
+                        messageContent = f">>> {reply.content}"
                     
                     else:
                         messageContent = reply.content
