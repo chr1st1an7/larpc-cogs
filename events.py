@@ -177,6 +177,7 @@ class Events(commands.Cog):
             if target_channel:
 
                 sent_embed = await target_channel.send(embed=embed)
+                await sent_embed.add_reaction("<:larpclike:1141681050905489560>")
                 await message.delete()
                 while True:
                     def check(m):
@@ -232,6 +233,7 @@ class Events(commands.Cog):
                     
                     reply_embed.description = messageContent
                     await sent_embed.reply(embed=reply_embed)
+                    await reply_embed.add_reaction("<:larpclike:1141681050905489560>")
                     
 def setup(client):
     client.add_cog(Events(client))
