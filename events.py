@@ -144,7 +144,7 @@ class Events(commands.Cog):
             
             embed.timestamp = message.created_at
 
-            target_channel = self.client.get_channel(1141711874098991166)
+            target_channel = self.client.get_channel(1141325558341451797)
             if target_channel:
 
                 sent_embed = await target_channel.send(embed=embed)
