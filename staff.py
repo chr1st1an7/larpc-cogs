@@ -124,9 +124,9 @@ class Staff(commands.Cog):
     @commands.slash_command()
     @commands.check(badge_check)
     async def givebadge(self, inter, member : disnake.Member, badge : str = commands.Param(choices=["Blue Badge", "Golden Badge", "Grey Badge"])):
-        blue_badge = inter.guild.get_role(1141752546277462026)
-        golden_badge = inter.guild.get_role(1141752640015958016)
-        grey_badge = inter.guild.get_role(1141752742038229204)
+        blue_badge = inter.guild.get_role(1141756142549217310)
+        golden_badge = inter.guild.get_role(1141756221146267741)
+        grey_badge = inter.guild.get_role(1141756262716014613)
 
         role = None
 
